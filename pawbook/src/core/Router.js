@@ -1,27 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import NavbarComponent from "../components/global/Navbar";
+import PrivateRoute from "../components/global/PrivateRoute";
+import roles from "../configs/roles";
+
 import { Navbar, Nav } from 'react-bootstrap';
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
+import LoginPage from "../pages/auth/Login";
+import RegisterPage from "../pages/auth/Register";
+import AnimalListPage from "../pages/animal/ListAnimals";
+import AnimalDetailsPage from "../pages/animal/AnimalDetails";
+import UserListPage from "../pages/user/ListUser";
+import UserDetailsPage from "../pages/user/UserDetails";
+
+
 export default class RouterComponent extends React.Component {
     render() {
         return (
             <Router>
-                <Navbar bg="dark" expand="lg">
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/about">About</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
+                <NavbarComponent />
                 <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
+                    <Route exact path="/register" component={RegisterPage} />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/about" component={About} />
+                    <Route exact path="/animal/list" component={AnimalListPage} />
+                    <Route exact path="/animal/details/:id" component={AnimalDetailsPage} />
+                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/list" component={UserListPage} />
+                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/details/:id" component={UserDetailsPage} />
+                    <Route path="*" component={Home} />
                 </Switch>
             </Router>
         );
