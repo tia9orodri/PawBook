@@ -35,9 +35,14 @@ export default class NavbarComponent extends React.Component {
                   <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
+                <div>
                 <Nav.Link as={NavLink} to="/login">
                   Login
                 </Nav.Link>
+                 <Nav.Link as={NavLink} to="/register">
+                 Register
+               </Nav.Link>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>
