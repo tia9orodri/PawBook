@@ -2,11 +2,12 @@ import React from "react";
 import services from "../../services";
 import { Form, Button, Card } from "react-bootstrap";
 import "./Auth.css";
+
 export default class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
     //define props todas vazias excepto o role
-    this.state = { username: "", password: "", name: "", role: 2 };
+    this.state = { email: "", password: "", name: "", role: 2 };
   }
   //botão de registo
   handleSubmit(evt) {
@@ -17,7 +18,7 @@ export default class RegisterPage extends React.Component {
   }
 
   render() {
-    const { username, password, name, role } = this.state;
+    const { email, password, name } = this.state;
     return (
       <div id="auth-board">
         <Card style={{ width: "18rem" }}>
@@ -25,11 +26,11 @@ export default class RegisterPage extends React.Component {
             <Card.Body>
               <Card.Title>Registo</Card.Title>
               <Form.Group>
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control 
                 required true
-                value={username} 
-                onChange={(evt) => this.setState({ username: evt.target.value })} />
+                value={email} 
+                onChange={(evt) => this.setState({ email: evt.target.value })} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password</Form.Label>
@@ -47,16 +48,6 @@ export default class RegisterPage extends React.Component {
                   value={name}
                   onChange={(evt) => this.setState({ name: evt.target.value })}
                 />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Role</Form.Label>
-                <Form.Control
-                  as="select"
-                  value={role}
-                  onChange={(evt) => this.setState({ role: parseInt(evt.target.value) })}>
-                  <option value={2}>Contributor</option>
-                  <option value={1}>Boss</option>
-                </Form.Control>
               </Form.Group>
               <Button variant="primary" type="submit" block>
                 Register

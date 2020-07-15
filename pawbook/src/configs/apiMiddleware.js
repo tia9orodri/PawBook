@@ -1,13 +1,16 @@
 const serverURL = "http://localhost:3001";
 
 export const apiRequest = (method, route, params) => {
+ 
   let currentUser = sessionStorage.getItem("user");
   return new Promise((resolve, reject) => {
     let serviceUrl = serverURL + route;
+
     if (params && params.query) {
       serviceUrl += getQueryString(params.query);
+      
     }
-    fetch(serviceUrl, {
+    fetch(serviceUrl, {     
       method,
       headers: {
         ...(params && params.jsonData && { "Content-Type": "application/json" }),
@@ -21,6 +24,7 @@ export const apiRequest = (method, route, params) => {
       .then((res) => parseResponse(res))
       .then((data) => resolve(data))
       .catch((err) => {
+        console.log("ENTROU");
         console.error(`error ${method} ${route}: ${err.message}`);
         reject(err);
       });
@@ -29,7 +33,8 @@ export const apiRequest = (method, route, params) => {
 
 const parseResponse = (response) =>
   new Promise((resolve, reject) => {
-    if (response.ok) {
+    
+    if (response.ok) {    
       resolve(response.json());
     } else {
       reject(response.text());
