@@ -1,24 +1,19 @@
 const serverURL = "http://localhost:5000";
 
-export const apiRequest = (method, route, params) => {
+export const apiRequest = (method, route, body) => {
   let currentUser = sessionStorage.getItem("user");
   return new Promise((resolve, reject) => {
-    let serviceUrl = serverURL + route;
-    if (params && params.query) {
-      serviceUrl += getQueryString(params.query);
-    }
-    fetch(serviceUrl, {
+    fetch(serverURL + route, {
       method,
       headers: {
-        ...(params && params.jsonData && { "Content-Type": "application/json" }),
+         "Content-Type": "application/json",
         ...(currentUser && { Authorization: JSON.parse(currentUser).token }),
       },
-      ...(params && {
-        ...(params.jsonData && { body: JSON.stringify(params.jsonData) }),
-        ...(params.formData && { body: params.formData }),
-      }),
-    })
-      .then((res) => parseResponse(res))
+      
+         ...(body && {body: JSON.stringify(body) }),
+         
+      })
+      .then((res) => res.json())
       .then((data) => resolve(data))
       .catch((err) => {
         console.error(`error ${method} ${route}: ${err.message}`);
@@ -29,6 +24,7 @@ export const apiRequest = (method, route, params) => {
 
 const parseResponse = (response) =>
   new Promise((resolve, reject) => {
+    console.log(response);
     if (response.ok) {
       resolve(response.json());
     } else {
