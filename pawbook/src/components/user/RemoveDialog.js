@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal, Button} from 'react-bootstrap';
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 //import {faSquare, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
-import userService from '../../services/user';
+import userService from '../../services/auth';
 
 export default class RemoveDialogComponent extends React.Component {
   constructor (props) {

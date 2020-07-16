@@ -2,6 +2,7 @@ import React from "react";
 import services from "../../services";
 import { Form, Button, Card } from "react-bootstrap";
 import "./Auth.css";
+
 export default class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ export default class RegisterPage extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    services.user.register(this.state).then(() => {
+    services.auth.register(this.state).then(() => {
       this.props.history.push("/login");
     });
   }

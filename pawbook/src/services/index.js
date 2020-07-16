@@ -1,7 +1,7 @@
 import animalService from "./animal.js";
-import userService from "./user.js";
+import authService from "./auth.js";
 
 export default {
     animal: animalService,
-    user: userService,
+    auth: authService,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import userService from "../../services/user";
+import userService from "../../services/auth";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;

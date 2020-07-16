@@ -6,8 +6,9 @@ const AuthContext = React.createContext({
   logout: () => {},
 });
 
-export default {
-  Boss: 1,
-  Servant: 2,
-};
+export default AuthContext;
 
+export const roles = {
+  Boss: 1,
+  Servent: 2,
+};

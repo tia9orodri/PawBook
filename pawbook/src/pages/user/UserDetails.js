@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import userService from "../../services/user";
+import userService from "../../services/auth";
 import RemoveDialogComponent from "../../components/user/RemoveDialog";
 import SubmitDialogComponent from "../../components/user/SubmitDialog";
 import AuthContext from "../../configs/authContext";
