@@ -13,7 +13,7 @@ export default class AnimalListPage extends React.Component {
   }
 
   componentDidMount() {
-    const animais = services.animal.getAll;
+    const animais = services.animal.getAll();
       console.log(animais);
   }
 

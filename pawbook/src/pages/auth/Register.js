@@ -7,7 +7,7 @@ export default class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
     //define props todas vazias excepto o role
-    this.state = { email: "", password: "", name: "", role: 2 };
+    this.state = { email: "", password: "", nome: "" };
   }
   //botão de registo
   handleSubmit(evt) {
@@ -18,7 +18,7 @@ export default class RegisterPage extends React.Component {
   }
 
   render() {
-    const { email, password, name } = this.state;
+    const { email, password, nome } = this.state;
     return (
       <div id="auth-board">
         <Card style={{ width: "18rem" }}>
@@ -45,8 +45,8 @@ export default class RegisterPage extends React.Component {
                 <Form.Label>Nome</Form.Label>
                 <Form.Control
                   required true
-                  value={name}
-                  onChange={(evt) => this.setState({ name: evt.target.value })}
+                  value={nome}
+                  onChange={(evt) => this.setState({ nome: evt.target.value })}
                 />
               </Form.Group>
               <Button variant="primary" type="submit" block>
