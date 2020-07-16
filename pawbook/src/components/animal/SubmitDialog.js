@@ -1,32 +1,32 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import genreService from "../../services/animal";
+import animalService from "../../services/animal";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
 
   constructor(props) {
     super(props);
-    this.toEdit = props.genre !== undefined;
+    this.toEdit = props.animal !== undefined;
     this.state = this.getFormState();
   }
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.genre }
+      ? { ...this.props.animal }
       : { nome: "", idade:"", localidade:"", distrito:"" };
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     if (this.toEdit) {
-      const { _id } = this.props.genre;
-      genreService
+      const { _id } = this.props.animal;
+      animalService
         .update(_id, this.state)
         .then(() => this.props.submited({ ...this.state, _id }))
         .catch(ex => console.log(ex));
     } else {
-      genreService
+      animalService
         .create(this.state)
         .then(result => this.props.submited({ ...this.state, _id: result._id }))
         .catch(ex => console.log(ex));

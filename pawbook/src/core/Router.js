@@ -4,7 +4,7 @@ import NavbarComponent from "../components/global/Navbar";
 import PrivateRoute from "../components/global/PrivateRoute";
 import roles from "../configs/roles";
 
-import { Navbar, Nav } from 'react-bootstrap';
+
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
 import LoginPage from "../pages/auth/Login";
@@ -24,8 +24,8 @@ export default class RouterComponent extends React.Component {
                     <Route exact path="/register" component={RegisterPage} />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/about" component={About} />
-                    <Route exact path="/animal/list" component={AnimalListPage} />
-                    <Route exact path="/animal/details/:id" component={AnimalDetailsPage} />
+                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/animal/list" component={AnimalListPage} />
+                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/animal/details/:id"component={AnimalDetailsPage} />
                     <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/list" component={UserListPage} />
                     <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/details/:id" component={UserDetailsPage} />
                     <Route path="*" component={Home} />

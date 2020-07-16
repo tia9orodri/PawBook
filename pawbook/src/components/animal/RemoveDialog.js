@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import genreService from '../../services/animal';
+import animalService from '../../services/animal';
 
 export default class RemoveDialogComponent extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class RemoveDialogComponent extends React.Component {
   }
 
   handleRemove() {
-    genreService.remove(this.props.animalId)
+    animalService.remove(this.props.animalId)
       .then(() => {
         this.props.removed ();
       });
