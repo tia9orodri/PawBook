@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import animalService from "../../services/animal";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
@@ -13,9 +15,11 @@ export default class SubmitDialogComponent extends React.Component {
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.animal }
-      : { nome: "", idade:"", localidade:"", distrito:"" };
+      ? {form:this.props.animal}
+      : { form: {nome: "",tipo:"", idade:"",raca:"", localidade:"", observacoes:""} };
   }
+
+
 
   handleSubmit(evt) {
     evt.preventDefault();
@@ -40,18 +44,42 @@ export default class SubmitDialogComponent extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { nome,idade,localidade, distrito } = this.state;
+    const tipos= ["Cão", "Gato"];
+    const { nome,tipo,idade,raca, localidade, observacoes } = this.state;
 
     return (
       <Modal show={show} onHide={this.handleCancel} size="lg">
         <Modal.Header>
-          <Modal.Title>{this.toEdit ? "Edit genre" : "Create genre"}</Modal.Title>
+          <Modal.Title>{this.toEdit ? "Edit Animal" : "Create Animal"}</Modal.Title>
         </Modal.Header>
         <Form onSubmit={(evt) => this.handleSubmit(evt)}>
           <Modal.Body>
             <Form.Group>
+              <Form.Label>Nome</Form.Label>
+              <Form.Control required true value={nome} onChange={(evt) => this.setState({ nome: evt.target.value })} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Tipo</Form.Label>
+              <Form.Control
+               as="select" 
+               value= {tipo}
+               value={tipo} onChange={(evt) => this.setState({ tipo: evt.target.value })} >
+                 <option value='0'>Escolhe um tipo</option>
+                 {this.state.tipos.map((tipo) =>
+                  <option key={tipo._id} value={tipos.tipo}>{tipos.tipo}</option>)}
+
+               </Form.Control>
+               
+            </Form.Group>
+
+            <Form.Group>
               <Form.Label>idade</Form.Label>
               <Form.Control required true value={idade} onChange={(evt) => this.setState({ idade: evt.target.value })} />
+            </Form.Group>
+            
+            <Form.Group>
+              <Form.Label>raca</Form.Label>
+              <Form.Control required true value={raca} onChange={(evt) => this.setState({ raca: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
@@ -60,9 +88,11 @@ export default class SubmitDialogComponent extends React.Component {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>distrito</Form.Label>
-              <Form.Control required true value={distrito} onChange={(evt) => this.setState({ distrito: evt.target.value })} />
+              <Form.Label>observacoes</Form.Label>
+              <Form.Control required true value={observacoes} onChange={(evt) => this.setState({ observacoes: evt.target.value })} />
             </Form.Group>
+
+            
 
           </Modal.Body>
           <Modal.Footer>

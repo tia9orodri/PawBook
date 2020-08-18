@@ -1,68 +1,65 @@
 import React from "react";
 import services from "../../services";
-import { Form, Button, Card } from "react-bootstrap";
+import { Container,Button,Alert, Card } from "react-bootstrap";
+import AuthContext from "../../configs/authContext";
+import SubmitDialogComponent from "../../components/animal/SubmitDialog"
+import SearchFormComponent from "../../components/global/SearchForm"
+
 
 
 export default class AnimalListPage extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     //define props todas vazias excepto o role
-    this.state = { 
-        
-     };
+    this.state = {
+      animals: [],
+      error: undefined,
+      newAnimal: false,
+    };
   }
 
   componentDidMount() {
-    const animais = services.animal.getAll();
-      console.log(animais);
+    this.getList();
+
   }
 
- 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname != prevProps.location.pathname) {
+      this.getList();
+    }
+  }
 
-  
+
+  getList(searchText) {
+    if (this.props.location.pathname === "/animal/list")
+      services.animal
+        .getAll(searchText)
+        .then((value) => this.setState({ animals: value }))
+        .catch((err) => this.setState({ error: err }));
+  }
+
+
+
   render() {
-    const { email, password, name } = this.state;
+    const { animals, error, newAnimal } = this.state;
+
     return (
-      <div id="auth-board">
-        <Card style={{ width: "18rem" }}>
-          <Form onSubmit={(evt) => this.handleSubmit(evt)}>
-            <Card.Body>
-                
-              <Card.Title>Animais</Card.Title>
-              <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control 
-                required true
-                value={email} 
-                onChange={(evt) => this.setState({ email: evt.target.value })} />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  required true
-                  type="password"
-                  value={password}
-                  onChange={(evt) => this.setState({ password: evt.target.value })}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Nome</Form.Label>
-                <Form.Control
-                  required true
-                  value={name}
-                  onChange={(evt) => this.setState({ name: evt.target.value })}
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit" block>
-                Register
-              </Button>
-              <Button variant="outline-secondary" size="sm" onClick={() => this.props.history.push("/login")} block>
-                Login
-              </Button>
-            </Card.Body>
-          </Form>
-        </Card>
-      </div>
+      <Container>
+        {error != undefined && <Alert variant="danger">error</Alert>}
+
+        <div id="animalList">
+          {animals.map((animal, index) => (
+            <Card key={`animal${index}`}>
+              <Card.Body>
+                <Card.Title>Animal: {animal.name}</Card.Title>
+                <Card.Subtitle>Espécie: {animal.especie}</Card.Subtitle>
+              </Card.Body>
+              <Card.Img src={animal.Img} variant="left"></Card.Img>
+
+            </Card>))}
+        </div>
+      </Container>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logoPawBook.png';
 import './Home.css';
 
 export default class App extends React.Component {
@@ -8,15 +8,15 @@ export default class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Edit <code>src/App.js</code> and save to reload.</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <br/>
+
+          <p className="parag">
+            <href>
+          PawBook - Adopte o seu animal!
+            </href>
+            <a href='animal/ListAnimals'>PawBook - Adopte o seu animal!</a>
+            
+          </p>
         </header>
       </div>
     );
