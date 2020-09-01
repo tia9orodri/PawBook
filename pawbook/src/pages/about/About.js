@@ -11,6 +11,10 @@ export default class AboutPage extends React.Component {
           name="Tiago Rodrigues"
           info={{cadeira: 'Tecnologias da Informação 2', email: 'aluno19058@ipt.pt', professor:'Diogo Mendes'}}
         />
+        <Author
+          name="Bernardo Alegria"
+          info={{cadeira: 'Tecnologias da Informação 2', email: 'aluno20620@ipt.pt', professor:'Diogo Mendes'}}
+        />
       </div>
     );
   }

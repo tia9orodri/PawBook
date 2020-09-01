@@ -7,8 +7,3 @@ const AuthContext = React.createContext({
 });
 
 export default AuthContext;
-
-export const roles = {
-  Boss: 1,
-  Servent: 2,
-};

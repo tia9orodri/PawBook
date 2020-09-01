@@ -62,8 +62,8 @@ export default class RegisterPage extends React.Component {
                   as="select"
                   value={role}
                   onChange={(evt) => this.setState({ role: parseInt(evt.target.value) })}>
-                  <option value={2}>Contributor</option>
-                  <option value={1}>Admin</option>
+                  <option value={2}>Servent</option>
+                  <option value={1}>Boss</option>
                 </Form.Control>
               </Form.Group>
               <Button variant="primary" type="submit" block>

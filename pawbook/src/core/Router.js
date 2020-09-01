@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavbarComponent from "../components/global/Navbar";
 import PrivateRoute from "../components/global/PrivateRoute";
-import { roles } from "../configs/authContext";
+//import { roles } from "../configs/authContext";
 
 
 import Home from '../pages/home/Home';
@@ -28,8 +28,8 @@ export default class RouterComponent extends React.Component {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/animal/list" component={AnimalListPage} />
                     <Route exact path="/animal/details/:id" component={AnimalDetailsPage}/>
-                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/list" component={UserListPage} />
-                    <PrivateRoute roles={[roles.Boss, roles.Servant]} exact path="/user/details/:id" component={UserDetailsPage} />
+                    <PrivateRoute roles={[1, 2]} exact path="/user/list" component={UserListPage} />
+                    <PrivateRoute roles={[1, 2]} exact path="/user/details/:id" component={UserDetailsPage} />
                     <Route path="*" component={Home} />
                 </Switch>
             </Router>

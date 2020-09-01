@@ -1,13 +1,21 @@
 import { apiRequest } from "../configs/apiMiddleware";
 
-export default {
-  register: (body) => apiRequest("POST", "/user/register", body),
-  login: (body) => apiRequest("POST", "/user/login", body),
 
-  
-  getAll: () => apiRequest("GET", `/user`),
-  getOne: (id) => apiRequest("GET", `/user/${id}`),
-  update: (id, data) => apiRequest("PUT", `/user/${id}`, data),
+const register = (body) => { return apiRequest("POST", "/user/register", body) };
+const login = (body) => { return apiRequest("POST", "/user/login", body) };
+
+
+const getAll = () => { return apiRequest("GET", `/user`) };
+const getOne = (id) => { return apiRequest("GET", `/user/${id}`) };
+const update = (id, data) => { return apiRequest("PUT", `/user/${id}`, data) };
 //   setCover: (id, formData) => apiRequest("PUT", `/user/cover/${id}`, { formData }),
-  remove: (id) => apiRequest("DELETE", `/user/${id}`),
+const remove = (id) => { return apiRequest("DELETE", `/user/${id}`) };
+export default {
+  register,
+  login,
+  getAll,
+  getOne,
+  update,
+  remove,
+
 };
