@@ -4,7 +4,7 @@ import AuthContext from "../configs/authContext";
 export default class AuthComponent extends React.Component {
     constructor(props) {
         super(props);
-        const user = sessionStorage.getItem("user");
+        const user = sessionStorage.getItem("users");
         console.log(user);
         this.state = {
 
@@ -14,11 +14,11 @@ export default class AuthComponent extends React.Component {
         };
     }
     login = (user) => {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("users", JSON.stringify(user));
         this.setState({ user: user });
     };
     logout = () => {
-        sessionStorage.removeItem("user");
+        sessionStorage.removeItem("users");
         this.setState({ user: undefined });
     };
     render() {
