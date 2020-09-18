@@ -22,7 +22,6 @@ export default class AnimalListPage extends React.Component {
 
   componentDidMount() {
     this.getList();
-
   }
 
   componentDidUpdate(prevProps) {
@@ -53,15 +52,19 @@ export default class AnimalListPage extends React.Component {
           {animals.map((animal, index) => (
             <Card key={`animal${index}`}>
               <Card.Body>
-                <Card.Title>Animal: {animal.name}</Card.Title>
+                <Card.Title>{animal.nome}</Card.Title>
+                <Card.Subtitle>Animal: {animal.tipo}</Card.Subtitle>
                 <Card.Subtitle>Espécie: {animal.especie}</Card.Subtitle>
+                <Card.Subtitle>Raça: {animal.raca}</Card.Subtitle>
+                <Card.Subtitle>Idade: {animal.idade}</Card.Subtitle>
+                <Card.Subtitle>Localidade: {animal.localidade}</Card.Subtitle>
+                <Card.Text>Observações: {animal.observacoes}</Card.Text>
               </Card.Body>
               <Card.Img src={animal.Img} variant="left"></Card.Img>
 
             </Card>))}
         </div>
-        <AnimalCard txt="bobby" imagem={bobby} >
-        </AnimalCard>
+
       </Container>
     );
   }
