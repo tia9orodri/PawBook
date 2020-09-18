@@ -4,8 +4,9 @@ export const apiRequest = (method, route, params) => {
   let currentUser = sessionStorage.getItem("users");
   return new Promise((resolve, reject) => {
     let serviceUrl = serverURL + route;
-    
+
     fetch(serviceUrl, {
+
       method,
       headers: {
         ...(params && params.jsonData && { "Content-Type": "application/json" }),
@@ -18,12 +19,10 @@ export const apiRequest = (method, route, params) => {
     })
       .then((res) => parseResponse(res))
       .then((data) => resolve(data))
-      .catch((err) => {
-        console.error(`error ${method} ${route}: ${err.message}`);
-        reject(err);
-      });
+      .catch((err) => reject(err))
   });
 };
+
 const parseResponse = (response) =>
   new Promise((resolve, reject) => {
     if (response.ok) {
