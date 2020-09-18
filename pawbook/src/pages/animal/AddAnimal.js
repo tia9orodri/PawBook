@@ -21,7 +21,7 @@ export default class AddAnimal extends React.Component {
   }  
 
   componentDidMount() {
-    this.addAnimal();
+    //this.addAnimal();
   }
 
   componentDidUpdate(prevProps) {
