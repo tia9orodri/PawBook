@@ -2,9 +2,10 @@ import React from "react";
 import services from "../../services";
 import { Container,Button,Alert, Card } from "react-bootstrap";
 import AuthContext from "../../configs/authContext";
-import SubmitDialogComponent from "../../components/animal/SubmitDialog"
-import SearchFormComponent from "../../components/global/SearchForm"
-
+import SubmitDialogComponent from "../../components/animal/SubmitDialog";
+import SearchFormComponent from "../../components/global/SearchForm";
+import AnimalCard from "../../components/animal/AnimalCard";
+import bobby from "../../assets/Bobby.jpg";
 
 
 export default class AnimalListPage extends React.Component {
@@ -59,6 +60,8 @@ export default class AnimalListPage extends React.Component {
 
             </Card>))}
         </div>
+        <AnimalCard txt="bobby" imagem={bobby} >
+        </AnimalCard>
       </Container>
     );
   }
