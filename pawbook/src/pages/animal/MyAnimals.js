@@ -18,7 +18,8 @@ export default class MyAnimals extends React.Component {
       animals: [],
       error: undefined,
       newAnimal: false,
-      id: JSON.parse(window.sessionStorage.getItem("users"))._id,
+      anunciante: JSON.parse(window.sessionStorage.getItem("users"))._id,
+      
     };
   }
 
@@ -45,7 +46,7 @@ export default class MyAnimals extends React.Component {
           //percorrer o array
           for (let i = 0; i < value.length; i++) {
             //para cada elemento que cumpra a condição, push para o outro
-            if(value[i].anunciante == this.state.id){
+            if(value[i].anunciante == this.state.anunciante){
               aux.push(value[i]);
             }  
           }
@@ -61,6 +62,7 @@ export default class MyAnimals extends React.Component {
     const { animals, error, newAnimal } = this.state;
 
     return (
+
       <Container id="myanimalsContainer">
         {error != undefined && <Alert variant="danger">error</Alert>}
 
@@ -78,7 +80,9 @@ export default class MyAnimals extends React.Component {
                 <Card.Text>Observações: {animal.observacoes}</Card.Text>
               </Card.Body>
               <Card.Img src={animal.Img} variant="left"></Card.Img>
-
+              <Button variant="outline-secondary" size="sm" onClick={() => this.props.history.push(`/animal/editanimal/:id${animal._id}`)} block>
+                Editar
+              </Button>
             </Card>))}
         </div>
 

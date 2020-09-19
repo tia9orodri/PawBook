@@ -1,7 +1,6 @@
 import React from "react";
 import services from "../../services";
 import { Container, Button, Form, Card } from "react-bootstrap";
-import RangeSlider from "react-rangeslider";
 import AuthContext from "../../configs/authContext";
 import SubmitDialogComponent from "../../components/animal/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";

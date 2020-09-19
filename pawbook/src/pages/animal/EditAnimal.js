@@ -1,7 +1,6 @@
 import React from "react";
 import services from "../../services";
 import { Container, Button, Form, Card } from "react-bootstrap";
-import RangeSlider from "react-rangeslider";
 import AuthContext from "../../configs/authContext";
 import SubmitDialogComponent from "../../components/animal/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -39,11 +38,13 @@ export default class EditAnimal extends React.Component {
   getAnimal(){
     let stringAux = this.state.id;
     stringAux = stringAux.substring();
+    console.log(stringAux);
     services.animal.getOne(this.state.id).then((response) => {
       this.setState({ nome: response.nome, tipo: response.tipo, 
                       idade: response.idade, raca: response.raca,
                       localidade: response.localidade, observacoes: response.observacoes,
                       anunciante: response.anunciante })
+                      
   }).catch((err) => {
 
   });
