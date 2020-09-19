@@ -7,19 +7,16 @@ import Axios from "axios";
 export default class EditUserPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { nome: "Tiago", email: "a@aa.aa", username: "tiago123", password:"" };
+        this.state = { nome: "Tiago", email: "a@aa.aa", username: "tiago123", password:"", userLoged:window.sessionStorage.getItem("users")};
     }
 
-    componentDidMount{
-
-
-    }
+    
 
     handleSubmit(evt) {
         evt.preventDefault();
         services.auth.register(this.state).then(() => {
             this.props.history.push("/animal");
-
+           
             
         });
     }
@@ -27,7 +24,10 @@ export default class EditUserPage extends React.Component {
    
 
     render() {
-        const { nome, email, username, password } = this.state;
+        const { nome, email, username, password,userLoged } = this.state;
+        const user = JSON.parse(userLoged);
+        alert(typeof user)
+        console.log(user);
         return (
             <div id="auth-board">
                 <Card style={{ width: "18rem" }}>
@@ -58,11 +58,11 @@ export default class EditUserPage extends React.Component {
                                 </Form.Group>
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>{user.username}</Form.Label>
                                 <Form.Control
                                     required true
-                                    value={password}
-                                    onChange={(evt) => this.setState({ password: evt.target.value })}
+                                    value={user.username}
+                                    onChange={(evt) => this.setState({ user: evt.target.value })}
                                 />
                             </Form.Group>
                            
