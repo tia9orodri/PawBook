@@ -2,6 +2,7 @@ import React from 'react';
 import {Card, Button, Badge, ListGroup} from 'react-bootstrap';
 import niceguy from '../../assets/logoPawBook.png';
 
+
 class AuthorComponent extends React.Component {
   constructor (props) {
     super (props);
@@ -14,7 +15,7 @@ class AuthorComponent extends React.Component {
   render () {
     return (
       <Card style={{width: '13rem'}}>
-        <Card.Img variant="top" src={niceguy} />
+        <Card.Img variant="top" src={this.props.info.foto} height="250" width="250"/>
         <Card.Body>
           <Card.Title>{this.props.name}</Card.Title>
           <Card.Subtitle>{this.props.info.cadeira}</Card.Subtitle>
@@ -22,6 +23,8 @@ class AuthorComponent extends React.Component {
             Email: {this.props.info.email} 
             <br />
             Professor: {this.props.info.professor}
+            <br />
+            
           </Card.Text>
         </Card.Body>
       </Card>

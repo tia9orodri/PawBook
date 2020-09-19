@@ -83,6 +83,11 @@ export default class MyAnimals extends React.Component {
               <Button variant="outline-secondary" size="sm" onClick={() => this.props.history.push(`/animal/editanimal/:id${animal._id}`)} block>
                 Editar
               </Button>
+              <button className="btn btn-danger" onClick={() => {if (window.confirm("Pretende eliminar o animal?")) { 
+                services.animal.remove(animal._id);
+                window.location.reload(false);
+}
+}}>Apagar</button>
             </Card>))}
         </div>
 

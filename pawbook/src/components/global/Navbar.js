@@ -25,15 +25,23 @@ export default class NavbarComponent extends React.Component {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link as={NavLink} to="/animal/list">
-              Animais
+              Adoptar
               </Nav.Link>
+              {user && <Nav.Link as={NavLink} to="/animal/addanimal">
+              Adicionar Animal
+                        </Nav.Link>
+            }
+            {user && <Nav.Link as={NavLink} to="/animal/myAnimals">
+              Meus Animais
+                        </Nav.Link>
+            }
             {user && user.role === roles.Boss && <Nav.Link as={NavLink} to="/user/list">
               Utilizadores
                         </Nav.Link>
             }
-            <Nav.Link as={NavLink} to="/user/edit/:id">
+            {user && <Nav.Link as={NavLink} to="/user/edit/:id">
               Meu Perfil
-            </Nav.Link>
+            </Nav.Link>}
             <Nav.Link as={NavLink} to="/about">
               About
           </Nav.Link>

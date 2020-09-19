@@ -1,6 +1,6 @@
 import React from "react";
 import services from "../../services";
-import { Container,Button,Alert, Card } from "react-bootstrap";
+import { Container, Button, Alert, Card, ResponsiveEmbed } from "react-bootstrap";
 import AuthContext from "../../configs/authContext";
 import SubmitDialogComponent from "../../components/animal/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -15,7 +15,7 @@ export default class AnimalListPage extends React.Component {
     this.state = {
       animals: [],
       error: undefined,
-      newAnimal: false,
+      
     };
   }
 
@@ -38,6 +38,28 @@ export default class AnimalListPage extends React.Component {
         .catch((err) => this.setState({ error: err }));
   }
 
+  getContacto(id) {
+    const dados = services.auth.getOne(id)
+      .then((response) => {
+        return  response.email 
+
+      }).catch((err) => {
+
+      });
+      return dados;
+  }
+  getNomeAnunciante(id) {
+    const dados = services.auth.getOne(id)
+      .then((response) => {
+        return  response.nome
+
+      }).catch((err) => {
+
+      });
+      return dados;
+  }
+  
+
 
 
   render() {
@@ -58,10 +80,14 @@ export default class AnimalListPage extends React.Component {
                 <Card.Subtitle>Idade: {animal.idade}</Card.Subtitle>
                 <Card.Subtitle>Localidade: {animal.localidade}</Card.Subtitle>
                 <Card.Text>Observações: {animal.observacoes}</Card.Text>
+                  
               </Card.Body>
               <Card.Img src={animal.Img} variant="left"></Card.Img>
-
-            </Card>))}
+              <Button variant="primary" type="submit" block>
+                Contactos
+              </Button>
+            </Card>))
+          }
         </div>
 
       </Container>
