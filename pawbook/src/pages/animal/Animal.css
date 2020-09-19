@@ -1,0 +1,16 @@
+#myanimalsContainer{
+  display:flex;
+  flex-direction: column;
+}
+
+#myanimals{
+  display:flex;
+}
+
+#animalList{
+  display:flex;
+}
+
+.card{
+  width:500px;
+}
