@@ -31,9 +31,13 @@ export default class NavbarComponent extends React.Component {
               Utilizadores
                         </Nav.Link>
             }
+            <Nav.Link as={NavLink} to="/user/edit/:id">
+              Meu Perfil
+            </Nav.Link>
             <Nav.Link as={NavLink} to="/about">
               About
           </Nav.Link>
+
           </Nav>
           <Nav>
             {user ? (

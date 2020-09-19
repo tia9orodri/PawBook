@@ -16,7 +16,8 @@ export default class AddAnimal extends React.Component {
       idade: "11meses",
       raca: "labrador",
       localidade: "Setubal",
-      observacoes: "qualquer coisa"
+      observacoes: "qualquer coisa",
+      anunciante:JSON.parse(window.sessionStorage.getItem("users"))._id
     };
   }  
 
