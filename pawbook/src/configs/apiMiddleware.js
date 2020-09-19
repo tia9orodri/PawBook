@@ -2,7 +2,6 @@ const serverURL = "http://localhost:5000";
 
 export const apiRequest = (method, route, params) => {
   let currentUser = sessionStorage.getItem("users");
-  console.log(method, route, params);
   return new Promise((resolve, reject) => {
     let serviceUrl = serverURL + route;
     

@@ -11,12 +11,12 @@ export default class AddAnimal extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      nome: "ze",
-      tipo: "cao",
-      idade: "11meses",
-      raca: "labrador",
-      localidade: "Setubal",
-      observacoes: "qualquer coisa",
+      nome: "leão",
+      tipo: "gato",
+      idade: "5meses",
+      raca: "gato grande",
+      localidade: "Lisboa",
+      observacoes: "Isto é um tigre do tiger king",
       anunciante:JSON.parse(window.sessionStorage.getItem("users"))._id
     };
   }  

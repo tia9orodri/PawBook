@@ -1,6 +1,6 @@
 import React from "react";
 import services from "../../services";
-import { Container,Button,Alert, Card } from "react-bootstrap";
+import { Container, Button, Alert, Card } from "react-bootstrap";
 import AuthContext from "../../configs/authContext";
 import SubmitDialogComponent from "../../components/animal/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -18,6 +18,7 @@ export default class MyAnimals extends React.Component {
       animals: [],
       error: undefined,
       newAnimal: false,
+      id: JSON.parse(window.sessionStorage.getItem("users"))._id,
     };
   }
 
@@ -38,7 +39,19 @@ export default class MyAnimals extends React.Component {
     if (this.props.location.pathname === "/animal/myAnimals")
       services.animal
         .getAll(searchText)
-        .then((value) => this.setState({ animals: value }))
+        .then((value) => {
+          console.log("value: ", value);
+          let aux = [];
+          //percorrer o array
+          for (let i = 0; i < value.length; i++) {
+            //para cada elemento que cumpra a condição, push para o outro
+            if(value[i].anunciante == this.state.id){
+              aux.push(value[i]);
+            }  
+          }
+          //colocar no state o array "calculado"
+          this.setState({ animals: aux });
+        })
         .catch((err) => this.setState({ error: err }));
   }
 
@@ -52,7 +65,8 @@ export default class MyAnimals extends React.Component {
         {error != undefined && <Alert variant="danger">error</Alert>}
 
         <div id="myanimals">
-        {animals.map((animal, index) => (
+          {animals.map((animal, index) => (
+
             <Card class="carta" key={`animal${index}`}>
               <Card.Body>
                 <Card.Title>{animal.nome}</Card.Title>
