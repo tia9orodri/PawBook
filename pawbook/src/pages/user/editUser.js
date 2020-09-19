@@ -2,7 +2,6 @@ import React from "react";
 import services from "../../services";
 import { Form, Button, Card } from "react-bootstrap";
 import "./User.css";
-import Axios from "axios";
 
 export default class EditUserPage extends React.Component {
     constructor(props) {
